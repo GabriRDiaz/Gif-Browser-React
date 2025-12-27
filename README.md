@@ -12,6 +12,7 @@ So far, this project explores:
 - Props  
 - `useState`  
 - `useEffect`  
+- `useRef`  
 - Axios for HTTP requests  
 - Debouncing user input  
 - Adapter Pattern  
