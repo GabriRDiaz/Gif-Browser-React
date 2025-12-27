@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { getGifsByQuery } from '../service/get-gif'
 import { mockGifs } from '../../mocks/gifs.mocks'
 import type { Gif } from '../interfaces/gif'
@@ -7,12 +7,20 @@ import type { Gif } from '../interfaces/gif'
 export const useGif = () => {
     const [useSearch, setSearch] = useState<string[]>([])
     const [useGifList, setGifList] = useState<Gif[]>(mockGifs)
+    const gifCache = useRef<Record<string, Gif[]>>({});
 
-    const handlePreviousSearchClick = (useSearch: string) => {
-        console.log(useSearch);
+    const handlePreviousSearchClick = async (useSearch: string) => {
+        console.log(gifCache)
+        if (gifCache.current[useSearch]) {
+            console.log("entra")
+            setGifList(gifCache.current[useSearch]);
+            return;
+        }
+        console.log("no entra")
+        setGifList(await getGifsByQuery(useSearch));
     }
 
-    const handleSearch = async (query: string) => {
+    const handleSearch = async (query: string = '') => {
         query = query.trim().toLowerCase();
         if (query.length === 0)
             return
@@ -20,9 +28,10 @@ export const useGif = () => {
             return
 
         setSearch([query, ...useSearch].splice(0, 8));
-        await getGifsByQuery(query);
+        const gifs: Gif[] = await getGifsByQuery(query);
 
-        setGifList(await getGifsByQuery(query));
+        setGifList(gifs);
+        gifCache.current[query] = gifs;
     }
 
     return {
