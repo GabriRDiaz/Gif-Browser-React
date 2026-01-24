@@ -1,4 +1,3 @@
-import React from 'react'
 import type { Gif } from '../interfaces/gif'
 
 interface Props {

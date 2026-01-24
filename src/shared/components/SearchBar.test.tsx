@@ -1,7 +1,6 @@
 import { describe, expect, test, vi } from "vitest";
-import { act, fireEvent, render, renderHook, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
-import { useState } from "react";
 import { SearchBar } from "./SearchBar";
 
 describe("SearchBar", () => {

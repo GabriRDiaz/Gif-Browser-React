@@ -1,4 +1,4 @@
-import React, { useEffect, useState, type KeyboardEvent } from 'react'
+import { useEffect, useState, type KeyboardEvent } from 'react'
 
 interface Props {
     placeholder?: string

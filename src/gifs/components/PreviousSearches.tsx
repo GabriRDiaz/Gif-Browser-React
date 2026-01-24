@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface Props {
     searches: string[],
     onLabelClicked: (search: string) => void,
