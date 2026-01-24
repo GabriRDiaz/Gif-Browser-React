@@ -2,7 +2,7 @@ import React from 'react'
 
 interface Props {
     title: string,
-    subtitle: string
+    subtitle?: string
 }
 
 export const CustomHeader = ({ title, subtitle }: Props) => {
@@ -10,7 +10,7 @@ export const CustomHeader = ({ title, subtitle }: Props) => {
         <div>
             <div className="content-center">
                 <h1>{title}</h1>
-                <p>{subtitle}</p>
+                {subtitle && <p>{subtitle}</p>}
             </div>
         </div>
     )
